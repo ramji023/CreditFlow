@@ -1,8 +1,29 @@
-# React + Vite
+# CreditFlow
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**CreditFlow** is a smart digital ledger application that helps users track payments, manage dues, set reminders, and generate financial reports effortlessly.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **User Authentication** – Secure login/signup using JWT.
+- **Transaction Management** – Add, update, and delete financial records.
+- **Reminders & Notifications** – Set due date alerts for pending payments.
+- **Monthly Reports & Charts** – Visualize income and expenses.
+- **Filtering & Sorting** – Organize transactions by category and date.
+- **Dark Mode Support** – Seamless light/dark theme toggle.
+- **Data Export** – Download reports in CSV/PDF format.
+- **Secure & Scalable** – Built using modern web technologies.
+
+## 🛠 Tech Stack
+
+### Frontend
+- React.js
+- Tailwind CSS
+- React Query (for API state management)
+- Axios (for API requests)
+
+### Backend
+- Express.js
+- PostgreSQL (Database)
+- Prisma ORM / Knex.js (for database management)
+- JSON Web Token (JWT) (for authentication)
+- Node-Cron (for automated reminders)
