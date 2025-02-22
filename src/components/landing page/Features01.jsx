@@ -1,6 +1,5 @@
-import image01 from "../../../public/landingPage/features_01_1.jpg"
-import image02 from "../../../public/landingPage/features_01_2.jpg"
-import image03 from "../../../public/landingPage/features_01_3.jpg"
+import image01 from "../../assets/landingPage/features_01_1.jpg"
+import image02 from "../../assets/landingPage/features_01_2.jpg"
 const Features01 = () => {
     return (
         <>

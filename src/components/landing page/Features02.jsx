@@ -1,4 +1,4 @@
-import image from "../../../public/landingPage/features_02_1.png"
+import image from "../../assets/landingPage/features_02_1.png"
 
 const Features02 = () => {
     return (

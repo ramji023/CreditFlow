@@ -1,4 +1,4 @@
-import HeroImage from "../../../public/landingPage/hero.png"
+import HeroImage from "../../assets/landingPage/hero.png"
 import { MoveRight } from 'lucide-react'
 const HeroSection = () => {
     return (
