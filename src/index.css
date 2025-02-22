@@ -12,7 +12,11 @@
   font-family: 'MustardSerif', serif;
 }
 
-
+body {
+  background-color: #f8f8f8;
+  margin: 0;
+  padding: 0;
+}
 /* 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;

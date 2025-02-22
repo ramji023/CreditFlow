@@ -1,7 +1,16 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import Layout from "./Layout/Layout"
+import Home from "./pages/Home"
 function App() {
   return (
     <>
-      <h1 className='text-4xl font-mustard font-bold'>Welcome to CreditFlow application</h1>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Layout />} >
+            <Route index element={<Home />} />
+          </Route>
+        </Routes>
+      </Router>
     </>
   )
 }
