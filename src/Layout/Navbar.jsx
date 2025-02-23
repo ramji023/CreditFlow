@@ -15,24 +15,24 @@ function Navbar() {
 
                 {/* Desktop Navigation */}
                 <nav className="hidden md:block">
-                    <ul className="flex space-x-12">
+                    <ul className="flex space-x-12 font-bold">
                         <li>
-                            <a href="#" className="text-lg hover:text-gray-600 transition-colors">
+                            <a href="#" className="text-lg hover:text-black transition-colors ">
                                 Home
                             </a>
                         </li>
                         <li>
-                            <a href="#" className="text-lg hover:text-gray-600 transition-colors">
+                            <a href="#" className="text-lg hover:text-black transition-colors">
                                 About
                             </a>
                         </li>
                         <li>
-                            <a href="#" className="text-lg hover:text-gray-600 transition-colors">
+                            <a href="#" className="text-lg hover:text-black transition-colors">
                                 Services
                             </a>
                         </li>
                         <li>
-                            <a href="#" className="text-lg hover:text-gray-600 transition-colors">
+                            <a href="#" className="text-lg hover:text-black transition-colors">
                                 Contact
                             </a>
                         </li>
