@@ -3,11 +3,11 @@ import { Lock, Smartphone, TrendingUp } from "lucide-react";
 
 const Features03 = () => {
     return (
-        <section className="py-20 bg-white">
+        <section className="py-20 md:px-16 px-2">
             <div className="container mx-auto text-center space-y-6">
                 {/* Headline */}
-                <h2 className="text-5xl font-bold text-gray-900">
-                    Our Core Features
+                <h2 className="text-4xl font-mustard text-gray-900">
+                    Why Choose CreditFlow
                 </h2>
                 {/* Subheading */}
                 <p className="text-xl text-gray-700">
@@ -17,7 +17,7 @@ const Features03 = () => {
                 {/* Three Feature Boxes */}
                 <div className="flex flex-col md:flex-row md:justify-center md:space-x-8 space-y-8 md:space-y-0 mt-10">
                     {/* Feature Box 1: Privacy */}
-                    <div className="flex-1 border border-gray-200 p-6 rounded-lg shadow-md flex flex-col items-center">
+                    <div className="flex-1 border border-gray-200 p-6 rounded-lg shadow-lg flex flex-col items-center">
                         <Lock size={48} className="text-blue-500" />
                         <h3 className="mt-4 text-2xl font-bold">Privacy</h3>
                         <p className="mt-2 text-gray-600">
@@ -26,7 +26,7 @@ const Features03 = () => {
                     </div>
 
                     {/* Feature Box 2: Mobile */}
-                    <div className="flex-1 border border-gray-200 p-6 rounded-lg shadow-md flex flex-col items-center">
+                    <div className="flex-1 border border-gray-200 p-6 rounded-lg shadow-lg flex flex-col items-center">
                         <Smartphone size={48} className="text-green-500" />
                         <h3 className="mt-4 text-2xl font-bold">Mobile</h3>
                         <p className="mt-2 text-gray-600">
@@ -35,7 +35,7 @@ const Features03 = () => {
                     </div>
 
                     {/* Feature Box 3: Smart Analytics */}
-                    <div className="flex-1 border border-gray-200 p-6 rounded-lg shadow-md flex flex-col items-center">
+                    <div className="flex-1 border border-gray-200 p-6 rounded-lg shadow-lg flex flex-col items-center">
                         <TrendingUp size={48} className="text-red-500" />
                         <h3 className="mt-4 text-2xl font-bold">Smart Analytics</h3>
                         <p className="mt-2 text-gray-600">
