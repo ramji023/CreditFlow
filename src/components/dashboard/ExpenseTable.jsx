@@ -10,7 +10,7 @@ const ExpenseTable = () => {
 
   return (
     <div className="p-6">
-      <div className="bg-white rounded-xl shadow-lg border border-gray-300 overflow-hidden p-8">
+      <div className="bg-white rounded-xl border border-gray-300 overflow-hidden p-8">
         {/* Search & Filters Row */}
         <div className="p-4 flex items-center justify-between border-b border-gray-300">
           {/* Search Field with Icon */}
@@ -22,7 +22,6 @@ const ExpenseTable = () => {
               className="pl-12 p-2 rounded-full w-full bg-gray-100 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
           </div>
-
           {/* Right Side: Filter & Sort */}
           <div className="flex items-center space-x-4">
             {/* Filter Button */}
@@ -49,18 +48,18 @@ const ExpenseTable = () => {
               <th className="p-3">Date</th>
               <th className="p-3">Type</th>
               <th className="p-3">Status</th>
-              <th className="p-3 text-right">⋮</th> {/* Rounded top-right corner */}
+              {/* <th className="p-3 text-right">⋮</th> Rounded top-right corner */}
             </tr>
           </thead>
           <tbody>
             {data.map((item, index) => (
               <React.Fragment key={item.id}>
-                <tr>
-                  <td className="p-4">{index + 1}</td>
-                  <td className="p-4">{item.customer}</td>
-                  <td className="p-4">{item.amount}</td>
-                  <td className="p-4">{item.date}</td>
-                  <td className="p-4">
+                <tr className="text-sm font-medium">
+                  <td className="py-2 px-4">{index + 1}</td>
+                  <td className="py-2 px-4">{item.customer}</td>
+                  <td className="py-2 px-4">{item.amount}</td>
+                  <td className="py-2 px-4">{item.date}</td>
+                  <td className="py-2 px-4">
                     <span
                       className={`px-2 py-1 rounded-full text-xs font-semibold text-white ${item.type === "credit" ? "bg-green-500" : "bg-red-500"
                         }`}
@@ -68,7 +67,7 @@ const ExpenseTable = () => {
                       {item.type}
                     </span>
                   </td>
-                  <td className="p-4">
+                  <td className="py-2 px-4">
                     <span
                       className={`px-2 py-1 rounded-full text-xs font-semibold text-white ${item.status === "completed"
                         ? "bg-green-500"
@@ -80,8 +79,9 @@ const ExpenseTable = () => {
                       {item.status}
                     </span>
                   </td>
-                  <td className="p-4 text-right cursor-pointer">⋮</td>
+                  <td className="py-2 px-4 text-right cursor-pointer">⋮</td>
                 </tr>
+
                 {/* Extended horizontal line */}
                 {index < data.length - 1 && (
                   <tr>
@@ -93,6 +93,7 @@ const ExpenseTable = () => {
               </React.Fragment>
             ))}
           </tbody>
+
         </table>
       </div>
     </div>

@@ -5,7 +5,7 @@ function Navbar() {
     const [darkMode, setDarkMode] = useState(false);
 
     return (
-        <header className="fixed w-full top-0 left-0 z-50 text-white" style={{ backgroundColor: "rgba(0, 0, 0, 0.4)" }}>
+        <header className="w-full top-0 left-0 z-50 text-white" style={{ backgroundColor: "rgba(0, 0, 0, 0.4)" }}>
             <div className="container mx-auto flex items-center justify-between p-3">
                 {/* Logo */}
                 <div className="flex items-center">
