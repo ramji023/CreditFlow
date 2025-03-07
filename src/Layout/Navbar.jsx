@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Bell, CreditCard, MoveRight, User, ChevronDown, Settings, LogOut } from "lucide-react";
 
 function Navbar() {
-    const isAuthenticated = false;
+    const isAuthenticated = true;
     const [showUserMenu, setShowUserMenu] = useState(false);
     return (
         < nav className="bg-white fixed w-full z-10" >
@@ -32,7 +32,7 @@ function Navbar() {
                                 </button>
 
                                 {showUserMenu && (
-                                    <div className="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                                    <div className="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white">
                                         <div className="py-1">
                                             <a href="#" className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                                                 <Settings className="h-4 w-4 mr-3" />

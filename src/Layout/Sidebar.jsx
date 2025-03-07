@@ -4,11 +4,11 @@ const Sidebar = () => {
     const [activeTab, setActiveTab] = useState('dashboard');
     return (
         <>
-            <div className="fixed inset-y-0 left-0 w-64 bg-white shadow-lg pt-16">
+            <div className="fixed inset-y-0 left-0 w-60  bg-white shadow-lg pt-16">
                 <nav className="mt-5 px-2">
                     <a
                         href="#"
-                        className={`group flex items-center px-2 py-2 text-sm font-medium rounded-md ${activeTab === 'dashboard'
+                        className={`group flex items-center px-2 py-2 text-lg font-medium rounded-md ${activeTab === 'dashboard'
                             ? 'bg-blue-100 text-blue-600'
                             : 'text-gray-600 hover:bg-gray-50'
                             }`}
@@ -19,7 +19,7 @@ const Sidebar = () => {
                     </a>
                     <a
                         href="#"
-                        className={`group flex items-center px-2 py-2 text-sm font-medium rounded-md ${activeTab === 'transactions'
+                        className={`group flex items-center px-2 py-2 text-lg font-medium rounded-md ${activeTab === 'transactions'
                             ? 'bg-blue-100 text-blue-600'
                             : 'text-gray-600 hover:bg-gray-50'
                             }`}
@@ -30,7 +30,7 @@ const Sidebar = () => {
                     </a>
                     <a
                         href="#"
-                        className={`group flex items-center px-2 py-2 text-sm font-medium rounded-md ${activeTab === 'customers'
+                        className={`group flex items-center px-2 py-2 text-lg font-medium rounded-md ${activeTab === 'customers'
                             ? 'bg-blue-100 text-blue-600'
                             : 'text-gray-600 hover:bg-gray-50'
                             }`}
@@ -41,7 +41,7 @@ const Sidebar = () => {
                     </a>
                     <a
                         href="#"
-                        className={`group flex items-center px-2 py-2 text-sm font-medium rounded-md ${activeTab === 'reminders'
+                        className={`group flex items-center px-2 py-2 text-lg font-medium rounded-md ${activeTab === 'reminders'
                             ? 'bg-blue-100 text-blue-600'
                             : 'text-gray-600 hover:bg-gray-50'
                             }`}
