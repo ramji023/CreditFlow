@@ -4,7 +4,7 @@ const Sidebar = () => {
     const [activeTab, setActiveTab] = useState('dashboard');
     return (
         <>
-            <div className="fixed inset-y-0 left-0 w-60  bg-white shadow-lg pt-16">
+            <div className="fixed inset-y-0 left-0 w-60  bg-white pt-16">
                 <nav className="mt-5 px-2">
                     <a
                         href="#"
