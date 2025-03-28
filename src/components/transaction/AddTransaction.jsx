@@ -1,22 +1,39 @@
 import { useState } from "react";
 import { X } from "lucide-react";
+import categories from "../../utils/categories";
+
 const AddTransaction = ({ setShowAddModal, setTransactions }) => {
-    console.log("add transaction component mount")
-    const [formData, setFormData] = useState({
-        category: '',
-        amount: '',
-        dateTime: '',
-        notes: '',
-    })
+    const [amount, setAmount] = useState(0);
+    const [date, setDate] = useState(() => {
+        return new Date().toISOString().split('T')[0]
+    });
+    const [time, setTime] = useState(() => {
+        const now = new Date();
+        const formattedTime = now.toLocaleTimeString('en-US', {
+            timeZone: 'Asia/Kolkata',
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: false
+        });
+        return formattedTime;
+    });
+    const [selectedCategory, setSelectedCategory] = useState(null);
+    const [selectedSubcategory, setSelectedSubcategory] = useState(null);
+    const [notes, setNotes] = useState('');
+    const [isCategoryOpen, setIsCategoryOpen] = useState(false);
+    const [isSubcategoryOpen, setIsSubcategoryOpen] = useState(false);
 
-    function handleChange(e) {
-        console.log(e.target.value);
-    }
+    const handleCategorySelect = (category) => {
+        setSelectedCategory(category);
+        setSelectedSubcategory(null);
+        setIsCategoryOpen(false);
+    };
 
-    function handleSubmit() {
+    const handleSubcategorySelect = (subcategory) => {
+        setSelectedSubcategory(subcategory);
+        setIsSubcategoryOpen(false);
+    };
 
-    }
-    const categories = [];
     return (
         <>
             <div className="w-full max-w-lg mx-auto p-6 bg-white shadow-lg mt-15 max-h-[90vh] overflow-y-auto">
@@ -29,30 +46,148 @@ const AddTransaction = ({ setShowAddModal, setTransactions }) => {
                         <X className="w-6 h-6" />
                     </button>
                 </div>
-                <form onSubmit={handleSubmit} className="space-y-4">
-                    <div>
-                        <label className="block text-gray-600 font-medium mb-1">Category</label>
-                        <select name="category" value={formData.category} onChange={handleChange} required className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-blue-500">
-                            <option value="" disabled>Select Category</option>
-                            {categories.map((cat) => (
-                                <option key={cat} value={cat}>{cat}</option>
+
+                {/* Amount Field */}
+                <div className="mb-4">
+                    <label className="block text-sm font-medium">Amount</label>
+                    <input
+                        type="number"
+                        className="w-full p-2 border rounded mt-1"
+                        value={amount}
+                        onChange={(e) => setAmount(e.target.value)}
+                        placeholder="Enter amount"
+                    />
+                </div>
+
+                {/* Date Field */}
+                <div className="mb-4">
+                    <label className="block text-sm font-medium">Date</label>
+                    <input
+                        type="date"
+                        className="w-full p-2 border rounded mt-1"
+                        value={date}
+                        onChange={(e) => setDate(e.target.value)}
+                    />
+                </div>
+
+                {/* Time Field */}
+                <div className="mb-4">
+                    <label className="block text-sm font-medium">Time</label>
+                    <input
+                        type="time"
+                        className="w-full p-2 border rounded mt-1"
+                        value={time}
+                        onChange={(e) => setTime(e.target.value)}
+                    />
+                </div>
+
+                {/* Custom Category Dropdown */}
+                <div className="mb-4 relative">
+                    <label className="block text-sm font-medium">Category</label>
+                    <div
+                        className="w-full p-2 border rounded mt-1 flex items-center justify-between cursor-pointer"
+                        onClick={() => setIsCategoryOpen(!isCategoryOpen)}
+                    >
+                        {selectedCategory ? (
+                            <div className="flex items-center gap-2">
+                                <img src={selectedCategory.icon} alt={selectedCategory.name} className="w-10 h-10" />
+                                <span>{selectedCategory.name}</span>
+                            </div>
+                        ) : (
+                            <span className="text-gray-400">Select a category</span>
+                        )}
+                    </div>
+
+                    {isCategoryOpen && (
+                        <div className="absolute z-10 w-full mt-1 bg-white border rounded shadow-lg max-h-60 overflow-y-auto">
+                            {categories.map((category) => (
+                                <div
+                                    key={category.name}
+                                    className="p-2 hover:bg-gray-100 cursor-pointer flex items-center gap-2"
+                                    onClick={() => handleCategorySelect(category)}
+                                >
+                                    <img src={category.icon} alt={category.name} className="w-10 h-10" />
+                                    <span>{category.name}</span>
+                                </div>  
                             ))}
-                        </select>
+                        </div>
+                    )}
+                </div>
+
+                {/* Custom Subcategory Dropdown */}
+                {selectedCategory?.subcategories && (
+                    <div className="mb-4 relative">
+                        <label className="block text-sm font-medium">Subcategory</label>
+                        <div
+                            className="w-full p-2 border rounded mt-1 flex items-center justify-between cursor-pointer"
+                            onClick={() => setIsSubcategoryOpen(!isSubcategoryOpen)}
+                        >
+                            {selectedSubcategory ? (
+                                <div className="flex items-center gap-2">
+                                    <img src={selectedSubcategory.icon} alt={selectedSubcategory.name} className="w-10 h-10" />
+                                    <span>{selectedSubcategory.name}</span>
+                                </div>
+                            ) : (
+                                <span className="text-gray-400">Select a subcategory</span>
+                            )}
+                        </div>
+
+                        {isSubcategoryOpen && (
+                            <div className="absolute z-10 w-full mt-1 bg-white border rounded shadow-lg max-h-60 overflow-y-auto">
+                                {selectedCategory.subcategories.map((subcategory) => (
+                                    <div
+                                        key={subcategory.name}
+                                        className="p-2 hover:bg-gray-100 cursor-pointer flex items-center gap-2"
+                                        onClick={() => handleSubcategorySelect(subcategory)}
+                                    >
+                                        <img src={subcategory.icon} alt={subcategory.name} className="w-10 h-10" />
+                                        <span>{subcategory.name}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
                     </div>
-                    <div>
-                        <label className="block text-gray-600 font-medium mb-1">Amount</label>
-                        <input type="number" name="amount" value={formData.amount} onChange={handleChange} required placeholder="Enter amount" className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-blue-500" />
-                    </div>
-                    <div>
-                        <label className="block text-gray-600 font-medium mb-1">Date & Time</label>
-                        <input type="datetime-local" name="dateTime" value={formData.dateTime} onChange={handleChange} required className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-blue-500" />
-                    </div>
-                    <div>
-                        <label className="block text-gray-600 font-medium mb-1">Notes (Optional)</label>
-                        <textarea name="notes" value={formData.notes} onChange={handleChange} placeholder="Add a note..." className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-blue-500"></textarea>
-                    </div>
-                    <button type="submit" className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition">Add Transaction</button>
-                </form>
+                )}
+
+                {/* Notes Field */}
+                <div className="mb-4">
+                    <label className="block text-sm font-medium">Notes (optional)</label>
+                    <textarea
+                        className="w-full p-2 border rounded mt-1"
+                        value={notes}
+                        onChange={(e) => setNotes(e.target.value)}
+                        placeholder="Add a note"
+                    ></textarea>
+                </div>
+
+                {/* Action Buttons */}
+                <div className="flex justify-between">
+                    <button
+                        className="bg-gray-400 text-white px-4 py-2 rounded"
+                        onClick={() => setShowAddModal(false)}
+                    >
+                        Cancel
+                    </button>
+                    <button
+                        className="bg-blue-500 text-white px-4 py-2 rounded"
+                        onClick={() => {
+                            setTransactions((prev) => [
+                                ...prev,
+                                {
+                                    amount,
+                                    date,
+                                    time,
+                                    category: selectedCategory?.name,
+                                    subcategory: selectedSubcategory?.name,
+                                    notes
+                                }
+                            ]);
+                            setShowAddModal(false);
+                        }}
+                    >
+                        Add
+                    </button>
+                </div>
             </div>
         </>
     );

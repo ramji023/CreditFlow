@@ -13,7 +13,7 @@ import bar from "../assets/category_image/bar.png"
 import eating_out from "../assets/category_image/eating-out.png"
 import food from "../assets/category_image/food.png"
 import drinks from "../assets/category_image/drinks.png"
-import transportation_icon from "../assets/category_image/transportation_icon.png"
+import transportation_icon from "../assets/category_image/transportation-icon.png"
 import transportation from "../assets/category_image/transportation.png"
 import car from "../assets/category_image/car.png"
 import fuel from "../assets/category_image/fuel.png"
@@ -32,7 +32,7 @@ import sport from "../assets/category_image/sports.png"
 import pets from "../assets/category_image/pets.png"
 import food_pets from "../assets/category_image/pet-food.png"
 import travel from "../assets/category_image/travels.png"
-import accommodation from "../assets/category_image/accommodation.png"
+import accommodation from "../assets/category_image/accommodations.png"
 import taxes from "../assets/category_image/tax.png"
 import smoking from "../assets/category_image/smoking.png"
 const categories = [
@@ -57,7 +57,7 @@ const categories = [
     },
     {
         type: "income",
-        name: "Other",
+        name: "Other(income)",
         icon: other,
     },
     {
@@ -152,7 +152,7 @@ const categories = [
     },
     {
         type: "expense",
-        name: "Other",
+        name: "Other(expenses)",
         icon: other,
         subcategories: [
             { name: "Others", icon: other },
