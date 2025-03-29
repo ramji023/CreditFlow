@@ -3,22 +3,13 @@ import { Plus, Search, Filter, MoreVertical } from "lucide-react";
 import AddTransaction from "../components/transaction/AddTransaction";
 
 const Transactions = () => {
-    const [transactions, setTransactions] = useState([]);
-    const [showAddModel, setShowAddModal] = useState(false);
-
     return (
         <div className="relative">
-            <div className={`p-6 transition duration-300 ${showAddModel ? "blur-sm" : ""}`}>
+            <div className="p-6 transition duration-300">
                 {/* Header */}
                 <div className="flex justify-between items-center mb-8">
                     <h2 className="text-2xl font-bold text-gray-900">Transactions</h2>
-                    <button
-                        onClick={() => setShowAddModal(true)}
-                        className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
-                    >
-                        <Plus className="h-5 w-5 mr-2" />
-                        Add Transaction
-                    </button>
+                   
                 </div>
 
                 {/* Search and Filter Section */}
@@ -106,12 +97,6 @@ const Transactions = () => {
                     </table>
                 </div>
             </div>
-
-            {showAddModel && (
-                <div className="fixed inset-0 flex justify-center items-center z-50">
-                    <AddTransaction setShowAddModal={setShowAddModal} setTransactions={setTransactions} />
-                </div>
-            )}
         </div>
     );
 };
@@ -167,7 +152,7 @@ export default Transactions;
 
 
 
-/**
+
        const transactions = [
            {
                id: 1,
@@ -207,4 +192,4 @@ export default Transactions;
                category: "Services"
            },
        ];
-   */
+

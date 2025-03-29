@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 import categories from "../../utils/categories";
 
-const AddTransaction = ({ setShowAddModal, setTransactions }) => {
+const AddTransaction = ({ setShowAddModal, transactionType }) => {
+    const [transactions, setTransactions] = useState([])
     const [amount, setAmount] = useState(0);
     const [date, setDate] = useState(() => {
         return new Date().toISOString().split('T')[0]
@@ -34,6 +35,11 @@ const AddTransaction = ({ setShowAddModal, setTransactions }) => {
         setIsSubcategoryOpen(false);
     };
 
+    // console.log("transaction type is : ", transactionType);
+
+    // useEffect(() => {
+    //     console.log("all transactions are : ", transactions);
+    // }, [transactions])
     return (
         <>
             <div className="w-full max-w-lg mx-auto p-6 bg-white shadow-lg mt-15 max-h-[90vh] overflow-y-auto">
@@ -100,16 +106,18 @@ const AddTransaction = ({ setShowAddModal, setTransactions }) => {
 
                     {isCategoryOpen && (
                         <div className="absolute z-10 w-full mt-1 bg-white border rounded shadow-lg max-h-60 overflow-y-auto">
-                            {categories.map((category) => (
-                                <div
-                                    key={category.name}
-                                    className="p-2 hover:bg-gray-100 cursor-pointer flex items-center gap-2"
-                                    onClick={() => handleCategorySelect(category)}
-                                >
-                                    <img src={category.icon} alt={category.name} className="w-10 h-10" />
-                                    <span>{category.name}</span>
-                                </div>  
-                            ))}
+                            {categories
+                                .filter((category) => category.type === transactionType)
+                                .map((category) => (
+                                    <div
+                                        key={category.name}
+                                        className="p-2 hover:bg-gray-100 cursor-pointer flex items-center gap-2"
+                                        onClick={() => handleCategorySelect(category)}
+                                    >
+                                        <img src={category.icon} alt={category.name} className="w-10 h-10" />
+                                        <span>{category.name}</span>
+                                    </div>
+                                ))}
                         </div>
                     )}
                 </div>
@@ -174,6 +182,7 @@ const AddTransaction = ({ setShowAddModal, setTransactions }) => {
                             setTransactions((prev) => [
                                 ...prev,
                                 {
+                                    transactionType,
                                     amount,
                                     date,
                                     time,
@@ -182,7 +191,7 @@ const AddTransaction = ({ setShowAddModal, setTransactions }) => {
                                     notes
                                 }
                             ]);
-                            setShowAddModal(false);
+                            // setShowAddModal(false);
                         }}
                     >
                         Add
