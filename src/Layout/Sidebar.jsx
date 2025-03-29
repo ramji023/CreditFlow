@@ -1,55 +1,51 @@
 import { useState } from 'react';
-import { TrendingUp, Wallet, Users, Clock } from 'lucide-react';
+import { TrendingUp, Wallet, HandCoins, Clock } from 'lucide-react';
+import { NavLink, useMatch } from 'react-router-dom';
 const Sidebar = () => {
-    const [activeTab, setActiveTab] = useState('dashboard');
+    const isDashboard = useMatch("/home")
     return (
         <>
             <div className="fixed inset-y-0 left-0 w-60  bg-white pt-16">
                 <nav className="mt-5 px-2">
-                    <a
-                        href="#"
-                        className={`group flex items-center px-2 py-2 text-lg font-medium rounded-md ${activeTab === 'dashboard'
-                            ? 'bg-blue-100 text-blue-600'
-                            : 'text-gray-600 hover:bg-gray-50'
-                            }`}
-                        onClick={() => setActiveTab('dashboard')}
+                    <NavLink
+                        to="/home"
+                        className={`group flex items-center px-2 py-2 text-lg font-medium rounded-md ${
+                            isDashboard ? "bg-blue-100 text-blue-600" : "text-gray-600 hover:bg-gray-50"
+                          }`}
                     >
                         <TrendingUp className="mr-3 h-5 w-5" />
                         Dashboard
-                    </a>
-                    <a
-                        href="#"
-                        className={`group flex items-center px-2 py-2 text-lg font-medium rounded-md ${activeTab === 'transactions'
-                            ? 'bg-blue-100 text-blue-600'
-                            : 'text-gray-600 hover:bg-gray-50'
-                            }`}
-                        onClick={() => setActiveTab('transactions')}
+                    </NavLink>
+                    <NavLink
+                        to="transactions"
+                        className={({ isActive }) =>
+                            `group flex items-center px-2 py-2 text-lg font-medium rounded-md ${isActive ? "bg-blue-100 text-blue-600" : "text-gray-600 hover:bg-gray-50"
+                            }`
+                        }
                     >
                         <Wallet className="mr-3 h-5 w-5" />
                         Transactions
-                    </a>
-                    <a
-                        href="#"
-                        className={`group flex items-center px-2 py-2 text-lg font-medium rounded-md ${activeTab === 'customers'
-                            ? 'bg-blue-100 text-blue-600'
-                            : 'text-gray-600 hover:bg-gray-50'
-                            }`}
-                        onClick={() => setActiveTab('customers')}
+                    </NavLink>
+                    <NavLink
+                        to="budget"
+                        className={({ isActive }) =>
+                            `group flex items-center px-2 py-2 text-lg font-medium rounded-md ${isActive ? "bg-blue-100 text-blue-600" : "text-gray-600 hover:bg-gray-50"
+                            }`
+                        }
                     >
-                        <Users className="mr-3 h-5 w-5" />
-                        Customers
-                    </a>
-                    <a
-                        href="#"
-                        className={`group flex items-center px-2 py-2 text-lg font-medium rounded-md ${activeTab === 'reminders'
-                            ? 'bg-blue-100 text-blue-600'
-                            : 'text-gray-600 hover:bg-gray-50'
-                            }`}
-                        onClick={() => setActiveTab('reminders')}
+                        <HandCoins className="mr-3 h-5 w-5" />
+                        Budgets
+                    </NavLink>
+                    <NavLink
+                        to="reminder"
+                        className={({ isActive }) =>
+                            `group flex items-center px-2 py-2 text-lg font-medium rounded-md ${isActive ? "bg-blue-100 text-blue-600" : "text-gray-600 hover:bg-gray-50"
+                            }`
+                        }
                     >
                         <Clock className="mr-3 h-5 w-5" />
                         Reminders
-                    </a>
+                    </NavLink>
                 </nav>
             </div>
         </>

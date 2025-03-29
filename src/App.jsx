@@ -3,6 +3,7 @@ import Layout from "./pages/Layout"
 import LandingPage from "./pages/LandingPage"
 import Dashboard from "./pages/Dashboard"
 import Transactions from "./pages/Transactions"
+import Budgets from "./pages/Budgets"
 function App() {
   return (
     <>
@@ -12,6 +13,7 @@ function App() {
           <Route path="/home" element={<Layout />}>
             <Route index element={<Dashboard />} />
             <Route path="transactions" element={<Transactions />} />
+            <Route path="budget" element={<Budgets/>} />
           </Route>
         </Routes>
       </Router>
