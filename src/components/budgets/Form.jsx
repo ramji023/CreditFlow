@@ -42,58 +42,88 @@ const Form = ({ formData, addFormData }) => {
     }
     return (
         <>
-            <div>
-                <div onClick={() => setCategoryDropdown((prev) => !prev)}>
-                    {categoryName ? (<>
-                        <img src={categoryName.icon} alt={categoryName.name} />
-                        <span>{categoryName.name}</span>
-                    </>) : (<> <span>select category name</span></>)}
-                </div>
-                {categoryDropdownOpen && (
-                    <>
-                        {categories
-                            .filter((category) => category.type === 'expense')
-                            .map((category) => (
-                                <div key={category.name} onClick={() => handleCategoryName(category)}>
-                                    <img src={category.icon} alt={category.name} />
-                                    <span>{category.name}</span>
-                                </div>
-                            ))
-                        }
-                    </>
-                )}
-            </div>
-            {
-                categoryName && (<>
-                    <div>
-                        <div onClick={() => setSubCategoryDropdownOpen((prev) => !prev)}>
-                            {subCategoryName ? (<>
-                                <img src={subCategoryName.icon} alt={subCategoryName.name} />
-                                <span>{subCategoryName.name}</span>
-                            </>) : (<><span>select sub category name</span></>)}
-                        </div>
-
-                        {subCategoryDropdownOpen && (
+            <div className="p-2 bg-white flex items-center gap-4">
+                {/* Category Dropdown */}
+                <div className="relative flex-1 min-w-[180px]">
+                    <div
+                        className="p-2 border rounded cursor-pointer flex items-center gap-x-1 hover:border-gray-400"
+                        onClick={() => setCategoryDropdown((prev) => !prev)}
+                    >
+                        {categoryName ? (
                             <>
-                                {categoryName.subcategories.map((subCategory) => (
-                                    <div key={subCategory.name} onClick={() => handleSubCategoryName(subCategory)}>
-                                        <img src={subCategory.icon} alt={subCategory.name} />
-                                        <span>{subCategory.name}</span>
-                                    </div>
-                                ))}
+                                <img src={categoryName.icon} alt={categoryName.name} className="w-6 h-6 mr-2" />
+                                <span className="truncate">{categoryName.name}</span>
                             </>
+                        ) : (
+                            <span className="text-gray-500 truncate">Select category</span>
                         )}
                     </div>
-                </>)
-            }
+                    {categoryDropdownOpen && (
+                        <div className="absolute left-0 right-0 mt-1 border bg-gray-50 shadow-lg rounded-md z-10 max-h-40 overflow-y-auto">
+                            {categories
+                                .filter((category) => category.type === "expense")
+                                .map((category) => (
+                                    <div
+                                        key={category.name}
+                                        className="p-2 flex items-center cursor-pointer hover:bg-gray-100"
+                                        onClick={() => handleCategoryName(category)}
+                                    >
+                                        <img src={category.icon} alt={category.name} className="w-6 h-6 mr-2" />
+                                        <span className="truncate">{category.name}</span>
+                                    </div>
+                                ))}
+                        </div>
+                    )}
+                </div>
 
-            <div>
-                <input type="number" value={formData.amount} onChange={(e) => handleBudgetAmount(formData.id, e.target.value)} placeholder="₹" />
-            </div>
+                {/* Subcategory Dropdown */}
+                {categoryName && (
+                    <div className="relative flex-1 min-w-[180px]">
+                        <div
+                            className="p-2 border rounded cursor-pointer flex items-center gap-x-1 hover:border-gray-400"
+                            onClick={() => setSubCategoryDropdownOpen((prev) => !prev)}
+                        >
+                            {subCategoryName ? (
+                                <>
+                                    <img src={subCategoryName.icon} alt={subCategoryName.name} className="w-6 h-6 mr-2" />
+                                    <span className="truncate">{subCategoryName.name}</span>
+                                </>
+                            ) : (
+                                <span className="text-gray-500 truncate">Select sub-category</span>
+                            )}
+                        </div>
+                        {subCategoryDropdownOpen && (
+                            <div className="absolute left-0 right-0 mt-1 border bg-gray-50 shadow-lg rounded-md z-10 max-h-40 overflow-y-auto">
+                                {categoryName.subcategories.map((subCategory) => (
+                                    <div
+                                        key={subCategory.name}
+                                        className="p-2 flex items-center cursor-pointer hover:bg-gray-100"
+                                        onClick={() => handleSubCategoryName(subCategory)}
+                                    >
+                                        <img src={subCategory.icon} alt={subCategory.name} className="w-6 h-6 mr-2" />
+                                        <span className="truncate">{subCategory.name}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+                )}
 
-            <div>
-                <select value={formData.repeat} onChange={(e) => handleRepeat(formData.id, e.target.value)}>
-                    <option value="" disabled>select repeat</option>
+                {/* Rest of the form remains same */}
+                <input
+                    type="number"
+                    value={formData.amount}
+                    onChange={(e) => handleBudgetAmount(formData.id, e.target.value)}
+                    placeholder="₹ Enter amount"
+                    className="flex-1 min-w-[120px] p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+
+                <select
+                    value={formData.repeat}
+                    onChange={(e) => handleRepeat(formData.id, e.target.value)}
+                    className="flex-1 min-w-[120px] p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                    <option value="" disabled>Select repeat</option>
                     <option value="Daily">Daily</option>
                     <option value="Weekdays">Weekdays</option>
                     <option value="Weekly">Weekly</option>

@@ -5,7 +5,9 @@ const Budgets = () => {
     return (
         <>
             <div className='p-4'>
-                <AddBudget/>
+                <Card />
+                <Budget />
+
             </div>
         </>
     )

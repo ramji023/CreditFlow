@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { Pencil, Trash2 } from "lucide-react"
-
+import AddBudget from "./AddBudget";
 const Budget = () => {
     const [budgetItems, setBudgetItems] = useState([
         { name: "Rent", amount: "₹8,000" },
         { name: "Groceries", amount: "₹3,000" }
     ]);
 
-    const [openModel, setOpenModel] = useState(false);
+    const [openModal, setOpenModal] = useState(false);
 
     return (
         <>
@@ -18,7 +18,9 @@ const Budget = () => {
                     <p className="text-gray-600 mt-2 max-w-md">
                         Set up your budget and start tracking your expenses. Click below to begin.
                     </p>
-                    <button className="mt-6 px-6 py-3 bg-blue-600 text-white font-medium rounded-lg shadow-md hover:bg-blue-700 transition">
+                    <button className="mt-6 px-6 py-3 bg-blue-600 text-white font-medium rounded-lg shadow-md hover:bg-blue-700 transition"
+                        onClick={() => setOpenModal(true)}
+                    >
                         + Add Budget
                     </button>
                 </div>
@@ -28,7 +30,9 @@ const Budget = () => {
                     <div className="flex justify-between items-center mb-4">
                         <h1 className="text-lg font-semibold text-gray-900">Your Monthly Budget</h1>
                         {/* Button appears in the top-right when budget exists */}
-                        <button className="px-4 py-2 bg-blue-600 text-white font-medium rounded-lg shadow-md hover:bg-blue-700 transition">
+                        <button className="px-4 py-2 bg-blue-600 text-white font-medium rounded-lg shadow-md hover:bg-blue-700 transition"
+                            onClick={() => setOpenModal(true)}
+                        >
                             + Add Budget Item
                         </button>
                     </div>
@@ -68,6 +72,15 @@ const Budget = () => {
                             </li>
                         ))}
                     </ul>
+                </div>
+            )}
+            {/* Modal Popup for Add Budget */}
+            {openModal && (
+                <div className="fixed inset-0 flex justify-center items-end md:items-center z-50 pb-4 md:pb-0">
+                    <AddBudget
+                        closeModel={() => setOpenModal(false)}
+                        className="w-full md:max-w-2xl lg:max-w-4xl mx-auto h-[90vh] md:h-auto rounded-t-2xl md:rounded-lg shadow-xl"
+                    />
                 </div>
             )}
         </>
