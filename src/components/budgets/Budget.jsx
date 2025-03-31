@@ -1,11 +1,13 @@
 import { useState } from "react";
-import {Pencil,Trash2} from "lucide-react"
+import { Pencil, Trash2 } from "lucide-react"
 
 const Budget = () => {
     const [budgetItems, setBudgetItems] = useState([
         { name: "Rent", amount: "₹8,000" },
         { name: "Groceries", amount: "₹3,000" }
     ]);
+
+    const [openModel, setOpenModel] = useState(false);
 
     return (
         <>
@@ -45,7 +47,7 @@ const Budget = () => {
                                 <div className="w-1/2 bg-gray-200 rounded-full h-2.5 overflow-hidden">
                                     <div
                                         className="bg-blue-600 h-2.5 rounded-full transition-all"
-                                        style={{ width: "60%" }} 
+                                        style={{ width: "60%" }}
                                     ></div>
                                 </div>
 
@@ -66,7 +68,6 @@ const Budget = () => {
                             </li>
                         ))}
                     </ul>
-
                 </div>
             )}
         </>
